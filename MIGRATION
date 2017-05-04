@@ -2,20 +2,15 @@ Migration of Monolithic Java application stack which users Apache Web Server, Ap
 
 Solution:
 
-First step: As we are using Apache Web server and Apache tomcat application.So for that we need to create same java stack on aws ec2 instance
-in which both apache web server and tomcat will run.
+First step: As we are using Apache Web server and Apache tomcat application.So for that we need to create same java stack on aws ec2 instance in which both apache web server and tomcat will run.
 
 Second Step:For high availablity and fault tolerance we have to create load balancer group in which we create one more java appliction stack on aws with the help of AMI(Amazon Machine Image) and put both the instances on ELB and we also enable aws auto scaling if the load is getting high on the application it will horizontally scalling the ec2 instance on the basis of AMI.
 
-Third Step: Now we can migrate the huge database from our data center to aws for this we will use AWS RDS services and the most suitable 
-strategy for migrate database with zero down time is AWS Data Migration Service (aws dms).The AWS Database Migration Service works by setting up and then managing a replication instance on AWS. This instance unloads data from the source database and loads it into the destination databaseand can be used for a one-time migration followed by on-going replication to support a migration that entails minimal downtime.Along the way DMS handles many of the complex details associated with migration, including data type transformation and conversion from one database platform 
-to another.The service also monitors the replication and the health of the instance, notifies you if something goes wrong, and automatically 
-provisions a replacement instance if necessary.
+Third Step: Now we can migrate the huge database from our data center to aws for this we will use AWS RDS services and the most suitablestrategy for migrate database with zero down time is AWS Data Migration Service (aws dms).The AWS Database Migration Service works by setting up and then managing a replication instance on AWS. This instance unloads data from the source database and loads it into the destination databaseand can be used for a one-time migration followed by on-going replication to support a migration that entails minimal downtime.Along the way DMS handles many of the complex details associated with migration, including data type transformation and conversion from one database platform to another.The service also monitors the replication and the health of the instance, notifies you if something goes wrong, and automatically provisions a replacement instance if necessary.
 
 Fourth Step: As we using Active MQ we can replace it with AWS SQS service.
 
-FiFth Step: As we using MongoDB database for backend so for that we will create serperate three ec2 instances for high availbality and scaliblity we will mongodb replictaion in which first we have to install mongodb on each and every single instance then we have to create replica sets onall three instance and configure them.Replication will create one master and two slave if master is getting down with any of the reason slave 
-will become master.So in this situation mongodb data is highly available.
+FiFth Step: As we using MongoDB database for backend so for that we will create serperate three ec2 instances for high availbality and scaliblity we will mongodb replictaion in which first we have to install mongodb on each and every single instance then we have to create replica sets onall three instance and configure them.Replication will create one master and two slave if master is getting down with any of the reason slave will become master.So mongodb data is highly available.
 
 Sixth Step: When everything is setup completely and working fine we point the url of our application to the aws application instance.
 
